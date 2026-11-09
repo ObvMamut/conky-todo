@@ -1,0 +1,4 @@
+# stale pre-chroma backup of todo.conf
+*.bak
+# generated per-machine by chroma; todo.conf falls back to built-in colours
+colors.lua
