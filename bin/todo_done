@@ -1,0 +1,10 @@
+#!/bin/sh
+FILE="$HOME/.local/share/todo/todo.txt"
+[ -f "$FILE" ] || exit 0
+sel=$(grep '^\[ \]' "$FILE" | cut -c5- | rofi -dmenu -i -p "done")
+[ -z "$sel" ] && exit 0
+tmp=$(mktemp)
+awk -v sel="$sel" '
+    !hit && $0 == "[ ] " sel { print "[x] " sel; hit = 1; next }
+    { print }
+' "$FILE" > "$tmp" && mv "$tmp" "$FILE"

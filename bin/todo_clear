@@ -1,0 +1,6 @@
+#!/bin/sh
+FILE="$HOME/.local/share/todo/todo.txt"
+[ -f "$FILE" ] || exit 0
+tmp=$(mktemp)
+grep -v '^\[x\]' "$FILE" > "$tmp" || true
+mv "$tmp" "$FILE"

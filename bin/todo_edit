@@ -1,0 +1,11 @@
+#!/bin/sh
+FILE="$HOME/.local/share/todo/todo.txt"
+mkdir -p "$(dirname "$FILE")"
+ED="${EDITOR:-nvim}"
+for t in "$TERMINAL" alacritty kitty wezterm st xterm; do
+    [ -n "$t" ] || continue
+    if command -v "$t" >/dev/null 2>&1; then
+        exec "$t" -e "$ED" "$FILE"
+    fi
+done
+exec "$ED" "$FILE"

@@ -1,0 +1,5 @@
+#!/bin/sh
+FILE="$HOME/.local/share/todo/todo.txt"
+mkdir -p "$(dirname "$FILE")"
+item=$(printf '' | rofi -dmenu -l 0 -p "todo")
+[ -n "$item" ] && printf '[ ] %s\n' "$item" >> "$FILE"

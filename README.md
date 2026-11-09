@@ -11,12 +11,19 @@ tiles or focuses it), but it works with any X11 setup.
 | `todo.conf` | conky config: position, size, fonts, colours |
 | `render.sh` | reads the todo file and prints conky markup |
 | `launch.sh` | (re)starts the widget |
+| `bin/todo_add` | rofi prompt: add an item |
+| `bin/todo_done` | rofi menu: mark an open item done |
+| `bin/todo_edit` | open the todo file in `$EDITOR` (default `nvim`) in a terminal |
+| `bin/todo_clear` | delete all done items |
+| `sxhkdrc.snippet` | example sxhkd key bindings for the helpers |
 | `uninstall.sh` | removes the widget (see the warning below) |
 
 ## Requirements
 
 - conky (with X11 and Lua support)
 - JetBrainsMono Nerd Font (change `font` in `todo.conf` to use another)
+- rofi, for `todo_add` and `todo_done`
+- a terminal for `todo_edit`: `$TERMINAL`, else alacritty, kitty, wezterm, st or xterm
 
 ## Install
 
@@ -26,6 +33,18 @@ git clone https://github.com/ObvMamut/conky-todo ~/.config/conky/todo
 ```
 
 The install path matters: `todo.conf` calls `$HOME/.config/conky/todo/render.sh`.
+
+Install the helper scripts somewhere on your `PATH` (the snippet below expects
+`~/.local/bin`):
+
+```sh
+mkdir -p ~/.local/bin
+cp ~/.config/conky/todo/bin/todo_* ~/.local/bin/
+```
+
+Bind them to keys by adding `sxhkdrc.snippet` to `~/.config/sxhkd/sxhkdrc`
+(`super+alt+n` add, `super+alt+d` done, `super+alt+e` edit), then run
+`pkill -USR1 sxhkd`. `todo_clear` has no binding; run it from a shell.
 
 To start it with BSPWM, add this to `bspwmrc`:
 
