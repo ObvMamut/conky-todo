@@ -70,3 +70,7 @@ Apply changes without restarting: `pkill -USR1 -f 'conky -c .*todo.conf'`.
 > the `# >>> todo widget >>>` block), copies your list to `~/todo_backup.txt`,
 > and then **deletes `~/.config/conky/todo` and `~/.local/share/todo`**. Read it
 > before running it.
+
+## License
+
+[MIT](LICENSE)
